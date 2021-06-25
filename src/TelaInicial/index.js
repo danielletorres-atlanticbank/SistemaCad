@@ -6,7 +6,6 @@ import {
     Text,
     Platform,
     TouchableWithoutFeedback,
-    Button,
     TouchableOpacity,
     Keyboard,
     Dimensions,
@@ -35,11 +34,11 @@ const TelaInicial = () => {
             />
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.inner}>
-                    <Text style={styles.header}>Cadastrar Projetos</Text>
-                    <Text style={styles.text}>Aqui você pode acompanhar o andamento dos seus projetos onde e quando quiser!</Text>
+                    <Text style={styles.header}>CadSystem</Text>
+                    <Text style={styles.text}>Aqui você pode cadastrar e acompanhar o andamento dos seus projetos onde e quando quiser!</Text>
                     <View style={styles.btnContainer}>
                         <TouchableOpacity onPress={irTelaCadastro} style={styles.button}>
-                            <Text style={styles.textButton}>Cadastrar</Text>
+                            <Text style={styles.textButton}>Entrar</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -59,13 +58,14 @@ const styles = StyleSheet.create({
         justifyContent: "space-around"
     },
     header: {
-        fontSize: 36,
-        color: "#fff"
+        fontSize: 40,
+        color: "#fff",
+        marginBottom: 20
     },
     text: {
         fontSize: 20,
         color: "#fff",
-        marginTop: -160,
+        marginTop: -150,
         width: width * 0.8
     },
     btnContainer: {
