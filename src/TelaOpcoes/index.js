@@ -10,7 +10,8 @@ import {
     Dimensions,
     StatusBar,
     FlatList,
-    ScrollView
+    ScrollView,
+    ActivityIndicator
 } from 'react-native';
 import firebase from "../firebaseConnection";
 import TelaLista from "../TelaLista";
@@ -24,11 +25,11 @@ const TelaOpcoes = ({route}) => {
     const [descricao, setDescricao] = useState("");
     const [anoSelecionado, setAnoSelecionado] = useState(null);
     const [nomeGerente, setNomeGerente] = useState("");
-
     const [selectedId, setSelectedId] = useState(null);
 
-
     const [sistemacad, setSistemacad] = useState([]); 
+
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function dados(){
@@ -45,9 +46,11 @@ const TelaOpcoes = ({route}) => {
                         selectedId: childItem.val().ano,
                         checked: childItem.val().status
                     };
-
-                    setSistemacad(oldArray => [...oldArray, data]);
+                
+                    setSistemacad(oldArray => [...oldArray, data].reverse());
                 })
+                
+                setLoading(false);
             })
         }
 
@@ -72,12 +75,23 @@ const TelaOpcoes = ({route}) => {
                         <Text style={styles.header}>Parabéns por escolher nossa plataforma!</Text>
                         <Text style={styles.text}>Agora vamos listar todos os projetos cadastrados...</Text>
                         <View style={styles.btnContainer}>
-                            <FlatList 
-                                keyExtractor={item => item.key}
-                                data={sistemacad}
-                                renderItem={({item}) => (<TelaLista data={item}/>)}
-                            
-                            />
+                            {loading ? 
+                                (
+                                    <ActivityIndicator 
+                                        color="#3742D4"
+                                        size={45}
+                                        marginTop={150}
+                                    />
+                                )
+                            :
+                                (
+                                    <FlatList 
+                                        keyExtractor={item => item.key}
+                                        data={sistemacad}
+                                        renderItem={({item}) => (<TelaLista data={item}/>)}
+                                    />
+                                )            
+                            }            
                         </View>
                     </View>
                 </TouchableWithoutFeedback>

@@ -1,34 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import {
     View,
-    KeyboardAvoidingView,
     StyleSheet,
     Text,
-    Platform,
-    TouchableWithoutFeedback,
-    Keyboard,
     Dimensions,
-    StatusBar,
-    FlatList
 } from 'react-native';
-import firebase from "../firebaseConnection";
 
 const { width, height } = Dimensions.get("window");
 
 const TelaLista = ({data}) => {
 
-    const [checked, setChecked] = useState(0);
-    const [titulo, setTitulo] = useState("");
-    const [descricao, setDescricao] = useState("");
-    const [anoSelecionado, setAnoSelecionado] = useState(null);
-    const [nomeGerente, setNomeGerente] = useState("");
-
-    const [selectedId, setSelectedId] = useState(null);
-
-    const [sistemacad, setSistemacad] = useState([]); 
-
     return (
         <View style={styles.container}>          
+            <View style={styles.viewDescric}>  
+                <Text style={styles.descric}>Código: </Text>
+                <Text style={styles.text1}>{data.key.substring(17, 19)}</Text>
+            </View>
             <View style={styles.viewDescric}>  
                 <Text style={styles.descric}>Título: </Text>
                 <Text style={styles.text1}>{data.titulo}</Text>

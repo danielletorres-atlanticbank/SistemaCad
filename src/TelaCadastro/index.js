@@ -16,6 +16,7 @@ import {
 import { RadioButton } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import firebase from "../firebaseConnection";
+import firestore from '@react-native-firebase/firestore';
 
 const { width, height } = Dimensions.get("window");
 
@@ -35,8 +36,7 @@ const DATA = [
     {
         id: '2013',
         ano: 2013
-    }
-    ,
+    },
     {
         id: '2014',
         ano: 2014
@@ -88,7 +88,6 @@ const TelaCadastro = () => {
     const [checked, setChecked] = useState(null);
     const [titulo, setTitulo] = useState("");
     const [descricao, setDescricao] = useState("");
-    const [anoSelecionado, setAnoSelecionado] = useState(null);
     const [nomeGerente, setNomeGerente] = useState("");
 
     const [selectedId, setSelectedId] = useState(null);
@@ -130,10 +129,11 @@ const TelaCadastro = () => {
             return;
         }
 
+        let user = firebase.auth().currentUser.uid;
         let sistemacad = await firebase.database().ref("sistemacad");
         let chave = sistemacad.push().key;
 
-        sistemacad.child(chave).set({
+        sistemacad.child(user).child(chave).set({
             ano: selectedId,
             descricao: descricao,
             gerente: nomeGerente,
@@ -147,8 +147,21 @@ const TelaCadastro = () => {
         setSelectedId(null);
         setChecked(0);        
         setNomeGerente("");
-
     }    
+
+    function User({ userId }) {
+        useEffect(() => {
+          const subscriber = firestore()
+            .collection('Users')
+            .doc(userId)
+            .onSnapshot(documentSnapshot => {
+              console.log('User data: ', documentSnapshot.data());
+            });
+      
+          // Stop listening for updates when no longer required
+          return () => subscriber();
+        }, [userId]);
+      }
 
     const irTelaOpcoes = () => {
         navigation.navigate("TelaOpcoes")

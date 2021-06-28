@@ -12,6 +12,7 @@ import {
     StatusBar
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import firebase from '../firebaseConnection';
 
 const { width, height } = Dimensions.get("window");
 
@@ -21,6 +22,12 @@ const TelaInicial = () => {
 
     const irTelaCadastro = () => {
         navigation.navigate("TelaCadastro");
+    }
+
+    const logout = async () => {
+        await firebase.auth().signOut();
+        alert("Deslogado com sucesso!");
+        navigation.navigate("TelaLoginUser");
     }
 
     return (
@@ -39,6 +46,9 @@ const TelaInicial = () => {
                     <View style={styles.btnContainer}>
                         <TouchableOpacity onPress={irTelaCadastro} style={styles.button}>
                             <Text style={styles.textButton}>Entrar</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={logout} style={styles.button}>
+                            <Text style={styles.textButton}>Sair</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -76,7 +86,8 @@ const styles = StyleSheet.create({
         height: height * 0.05,
         backgroundColor: "#3742D4",
         borderRadius: 5,
-        justifyContent: "center"
+        justifyContent: "center",
+        marginVertical: 10
     },
     textButton: {
         color: "#fff",

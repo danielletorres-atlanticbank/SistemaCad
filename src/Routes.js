@@ -5,6 +5,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import TelaInicial        from "./TelaInicial";
 import TelaCadastro       from "./TelaCadastro";
 import TelaOpcoes         from "./TelaOpcoes";
+import TelaLoginUser      from "./TelaLoginUser";
+import TelaCadastroUser   from "./TelaCadastroUser";
 
 
 const Stack = createStackNavigator();
@@ -13,7 +15,9 @@ const Stack = createStackNavigator();
 const Routes = () => {
     return(
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator 
+                initialRouteName="TelaLoginUser"
+            >
                 <Stack.Screen 
                     name="TelaInicial"
                     component={TelaInicial}
@@ -35,6 +39,24 @@ const Routes = () => {
                 <Stack.Screen 
                     name="TelaOpcoes"
                     component={TelaOpcoes}
+                    options={{
+                        title: false,
+                        headerShown: false
+                    }}
+                />
+
+                <Stack.Screen 
+                    name="TelaLoginUser"
+                    component={TelaLoginUser}
+                    options={{
+                        title: false,
+                        headerShown: false
+                    }}
+                />
+                
+                <Stack.Screen 
+                    name="TelaCadastroUser"
+                    component={TelaCadastroUser}
                     options={{
                         title: false,
                         headerShown: false
