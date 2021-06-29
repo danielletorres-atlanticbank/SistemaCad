@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     View,
     KeyboardAvoidingView,
@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import { Icon } from "react-native-elements";
 import { useNavigation } from '@react-navigation/native';
-import firebase from "../firebaseConnection";
+//import firebase from "../firebaseConnection";
 
 const { width, height } = Dimensions.get("window");
 
@@ -26,33 +26,33 @@ const TelaLoginUser = () => {
     const [password, setPassword] = useState("");
     const [visible, setVisible] = useState(true);
 
-    const logar = async () => {
-        if(email == ""){
-            alert("O campo E-mail é obrigatório!");
-            return;
-        }
-        if(password == ""){
-            alert("O campo Senha é obrigatório!");
-            return;
-        }
-        if(password.length < 6){
-            alert("A senha não pode ter menos de 6 caracteres!");
-            return;
-        }
+    // const logar = async () => {
+    //     if(email == ""){
+    //         alert("O campo E-mail é obrigatório!");
+    //         return;
+    //     }
+    //     if(password == ""){
+    //         alert("O campo Senha é obrigatório!");
+    //         return;
+    //     }
+    //     if(password.length < 6){
+    //         alert("A senha não pode ter menos de 6 caracteres!");
+    //         return;
+    //     }
 
-        await firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((response) => {
-           alert("Bem-vindo: " + response.user.email);
-           navigation.navigate("TelaInicial");
-        })
-        .catch((error) => {
-            alert("Ops! Algo deu errado!");
-            return;
-        })
+    //     await firebase.auth().signInWithEmailAndPassword(email, password)
+    //     .then((response) => {
+    //        alert("Bem-vindo: " + response.user.email);
+    //        navigation.navigate("TelaInicial");
+    //     })
+    //     .catch((error) => {
+    //         alert("Ops! Algo deu errado!");
+    //         return;
+    //     })
 
-        setEmail("");
-        setPassword("");
-    }
+    //     setEmail("");
+    //     setPassword("");
+    // }
 
 
     const irTelaCadastroUser = () => {
@@ -62,6 +62,9 @@ const TelaLoginUser = () => {
     const changeVisibility = () => {
         setVisible(!visible)
     }
+
+    useEffect(() => {
+    }, [])
 
     return (
         <KeyboardAvoidingView

@@ -12,7 +12,7 @@ import {
     StatusBar
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import firebase from '../firebaseConnection';
+//import firebase from '../firebaseConnection';
 
 const { width, height } = Dimensions.get("window");
 
@@ -24,11 +24,11 @@ const TelaInicial = () => {
         navigation.navigate("TelaCadastro");
     }
 
-    const logout = async () => {
-        await firebase.auth().signOut();
-        alert("Deslogado com sucesso!");
-        navigation.navigate("TelaLoginUser");
-    }
+    // const logout = async () => {
+    //     await firebase.auth().signOut();
+    //     alert("Deslogado com sucesso!");
+    //     navigation.navigate("TelaLoginUser");
+    // }
 
     return (
         <KeyboardAvoidingView

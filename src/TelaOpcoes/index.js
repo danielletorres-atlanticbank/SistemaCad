@@ -13,7 +13,7 @@ import {
     ScrollView,
     ActivityIndicator
 } from 'react-native';
-import firebase from "../firebaseConnection";
+//import firebase from "../firebaseConnection";
 import TelaLista from "../TelaLista";
 
 const { width, height } = Dimensions.get("window");
@@ -32,29 +32,29 @@ const TelaOpcoes = ({route}) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        async function dados(){
-            await firebase.database().ref("sistemacad").on("value", (snapshot) => {
+        // async function dados(){
+        //     await firebase.database().ref("sistemacad").on("value", (snapshot) => {
 
-                setSistemacad([]);
+        //         setSistemacad([]);
 
-                snapshot.forEach((childItem) => {
-                    let data = {
-                        key: childItem.key,
-                        nomeGerente: childItem.val().gerente,
-                        titulo: childItem.val().titulo,
-                        descricao: childItem.val().descricao,
-                        selectedId: childItem.val().ano,
-                        checked: childItem.val().status
-                    };
+        //         snapshot.forEach((childItem) => {
+        //             let data = {
+        //                 key: childItem.key,
+        //                 nomeGerente: childItem.val().gerente,
+        //                 titulo: childItem.val().titulo,
+        //                 descricao: childItem.val().descricao,
+        //                 selectedId: childItem.val().ano,
+        //                 checked: childItem.val().status
+        //             };
                 
-                    setSistemacad(oldArray => [...oldArray, data].reverse());
-                })
+        //             setSistemacad(oldArray => [...oldArray, data].reverse());
+        //         })
                 
-                setLoading(false);
-            })
-        }
+        //         setLoading(false);
+        //     })
+        // }
 
-        dados();
+        // dados();
     }, [])
 
     return (

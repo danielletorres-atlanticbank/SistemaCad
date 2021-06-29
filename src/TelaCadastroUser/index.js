@@ -14,8 +14,8 @@ import {
 } from 'react-native';
 import { Icon } from "react-native-elements";
 import { useNavigation } from '@react-navigation/native';
-import firebase from "../firebaseConnection";
-import firestore from '@react-native-firebase/firestore';
+//import firebase from "../firebaseConnection";
+
 
 const { width, height } = Dimensions.get("window");
 
@@ -27,38 +27,38 @@ const TelaCadastroUser = () => {
     const [password, setPassword] = useState("");
     const [visible, setVisible] = useState(true);
 
-    const cadastrar = async () => {
-        if(email == ""){
-            alert("O campo E-mail é obroigatório!");
-            return;
-        }
-        if(password == ""){
-            alert("O campo Senha é obrigatório!");
-            return;
-        }
-        await firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then((response) => {
-            alert("Usuário criado: " + response.user.email);
-        })
-        .catch((error) => {
-            if(error.code === "auth/weak-password"){
-                alert("Sua senha deve ter pelo menor 6 caracteres!");
-                return;
-            }
-            if(error.code === "auth/invalid-email"){
-                alert("E-mail inválido!");
-                return;
-            } else{
-                alert("Ops! Algo deu errado!");
-                return;
-            }
-        })
+    // const cadastrar = async () => {
+    //     if(email == ""){
+    //         alert("O campo E-mail é obroigatório!");
+    //         return;
+    //     }
+    //     if(password == ""){
+    //         alert("O campo Senha é obrigatório!");
+    //         return;
+    //     }
+    //     await firebase.auth().createUserWithEmailAndPassword(email, password)
+    //     .then((response) => {
+    //         alert("Usuário criado: " + response.user.email);
+    //     })
+    //     .catch((error) => {
+    //         if(error.code === "auth/weak-password"){
+    //             alert("Sua senha deve ter pelo menor 6 caracteres!");
+    //             return;
+    //         }
+    //         if(error.code === "auth/invalid-email"){
+    //             alert("E-mail inválido!");
+    //             return;
+    //         } else{
+    //             alert("Ops! Algo deu errado!");
+    //             return;
+    //         }
+    //     })
 
-        setEmail("");
-        setPassword("");
+    //     setEmail("");
+    //     setPassword("");
 
-        navigation.navigate("TelaInicial");
-    }
+    //     navigation.navigate("TelaInicial");
+    // }
     
     const changeVisibility = () => {
         setVisible(!visible);

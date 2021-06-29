@@ -7,6 +7,7 @@ import TelaCadastro       from "./TelaCadastro";
 import TelaOpcoes         from "./TelaOpcoes";
 import TelaLoginUser      from "./TelaLoginUser";
 import TelaCadastroUser   from "./TelaCadastroUser";
+import Telinha from "./TelinhaTeste";
 
 
 const Stack = createStackNavigator();
@@ -16,8 +17,17 @@ const Routes = () => {
     return(
         <NavigationContainer>
             <Stack.Navigator 
-                initialRouteName="TelaLoginUser"
+                initialRouteName="Telinha"
             >
+                <Stack.Screen 
+                    name="Telinha"
+                    component={Telinha}
+                    options={{
+                        title: false,
+                        headerShown: false
+                    }}
+                />
+
                 <Stack.Screen 
                     name="TelaInicial"
                     component={TelaInicial}

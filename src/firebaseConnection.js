@@ -1,20 +1,21 @@
-import firebase from "firebase/app";
-import "firebase/database";
-import "firebase/auth";
+import firebase from '@react-native-firebase/app';
+import '@react-native-firebase/firestore';
+import '@react-native-firebase/auth';
 
-let firebaseConfig = {
-    apiKey: "AIzaSyCrJLm89EuJ3yARax1YcX_Y0eBs9OKtPw0",
-    authDomain: "sistemacad-a5dc2.firebaseapp.com",
-    projectId: "sistemacad-a5dc2",
-    storageBucket: "sistemacad-a5dc2.appspot.com",
-    messagingSenderId: "286369803250",
-    appId: "1:286369803250:web:115e734abf2dd55cb9996b",
-    measurementId: "G-H7TXSWM4EP"
+const firebaseConfig = {
+  apiKey: 'AIzaSyDkyZFKPvsbEU55qfYGboi-i-2awQZLRf8',
+  databaseURL: 'https://sistemacad-988b5.firebaseio.com',
+  authDomain: 'sistemacad-988b5.firebaseapp.com',
+  projectId: 'sistemacad-988b5',
+  storageBucket: 'sistemacad-988b5.appspot.com',
+  messagingSenderId: '509864665764',
+  appId: '1:509864665764:web:86a153dd2925f92115bc31',
 };
+
 // Initialize Firebase
-if(!firebase.apps.length){
-    // Abrir minha conexão
-    firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  // Abrir minha conexão
+  firebase.initializeApp(firebaseConfig);
 }
 
 export default firebase;
